@@ -1,0 +1,32 @@
+<div class="centered-content">
+    <div class="task-managrt-containrt">
+        <div class="sidebar">
+            <div class="list-menu">
+                <h1 class="title has-text-primary"> Lists </h1>
+                <!-- routerLink ===>  href will redirect and reload the page as we need SPA we should use routerLink JS to bring in the pages we use routerLink -->
+                <!-- In our app.routing.ts ===>  { path: 'lists/:listId', component: TaskListComponent }, [routerLink]="['/lists', list._id]"  -->
+                <!-- routerLink will not reload the page instead it will bring the the content in the same page without reloading -->
+                <a class="list-menu-item" *ngFor="let list of lists" [routerLink]="['/lists', list._id]" routerLinkActive="is-active"> 
+                    <p class="white-text d-flex-jc">
+                        <span>{{ list.title }}</span>
+                        <span (click)="deleteTheList(list)" class="task-delete pull-right btn-rounded-corners">X</span>
+                    </p>
+                </a>
+                <button class="btn btn-primary mt-3" routerLink="/new-list"> Add List </button>
+            </div>
+            <div class="task-list-container" >
+                <h1 class="title has-text-primary"> Tasks </h1>
+                <div  *ngIf="tasks.length">
+                    <div class="task" [ngClass]='{ "strike-through-completed" : task.completed }' *ngFor="let task of tasks" (click)="onTaskClick(task)">    
+                        <p class="">
+                            <span> {{ task.title }} </span>
+                            <span (click)="deleteTheTask(task)" class="task-delete pull-right btn-rounded-corners">X</span>
+                        </p>
+                    </div>
+                </div>
+                <button class="btn btn-primary add-button m-2 circle-add-btn" [ngClass]="{ 'opacity-low' : this.lists.length === 0 }" 
+                    [disabled]="this.lists.length === 0" (click)="addTask()"> Add Tasks </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="centered-content">
+    <div class="modal-box form-group">
+        <h1 class="title"> Create a new Task </h1>
+        <input type="text" #taskInput class="form-control has-background-light" placeholder="Enter the list name"/>
+
+        <!-- If the Add button is clicked then user should be redirected to localhost:3000/lists/:listId/new-task -->
+        <button class="btn btn-primary mt-2" (click)="addTask( taskInput.value )"> Add </button>
+        <!-- If yhe cancel button is clicked then user should be redirected to localhost:3000/lists/:listId -->
+        <button class="btn white-text mt-2 cancel-hover " routerLink="../"> Cancel </button>
+
+    </div>
+</div>
